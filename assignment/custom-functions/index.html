@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Functions in JScript</title>
+    <style>
+        body{
+            background: #000;
+            color: crimson;
+        }
+    </style>
+</head>
+<body>
+    
+    <script>
+        // functions
+        var myArr = [100,20,3,400,-5,2500.55, 0, 66000, 3000];
+        // max value
+        max(myArr);
+        function max(arr = []){
+            var fakeArr = arr[0];
+           for(var i = 0; i<arr.length ; i++){
+            if (arr[i] > fakeArr) {
+                fakeArr = arr[i];
+            }
+        }
+        document.write("<b style='color:#0c1'>" +fakeArr + "</b><br>");
+        }
+        // min value
+        min(myArr);
+        function min(arr = []){
+            var fakeArr = arr[0];
+            for (let i = 0; i < arr.length; i++) {
+                
+                if (arr[i] < fakeArr) {
+                    fakeArr = arr[i];
+                }
+            }
+        document.write("<b>" +fakeArr + "</b><br>");
+
+        }
+        // sort an array by function
+        /**
+         * todo:!. swaping logic
+        if(arr[i] > arr[i+1]){
+          el = arr[i];
+          arr[i] = arr[i+1];
+          arr[i+1] = el
+        }
+        */
+        var myArr = [290, 128, 80, 65, 69, -1];
+        el = 0;
+        for (i = 0; i < arr.length; i++) {
+            for (j = 0; j < arr.length; j++) {
+                if (arr[j] > arr[i + 1]) {
+                    //      el(0) = 290 first time
+                    el = arr[j];
+                    //       arr[0] = 128 first time
+                    arr[j] = arr[i + 1];
+                    // arr[1] = 290 first time
+                    arr[i + 1] = el;
+                }
+            }
+        }
+        document.write(arr);
+        // swaping new logic [a,b] = [b,a]
+        var arr = [290, 128, 80, 65, 69, -1];
+        console.log(arr);
+        
+        el = 0;
+        for (i = 0; i < arr.length; i++) {
+          for (j = 0; j < arr.length; j++) {
+            if (arr[j] > arr[i + 1]) {
+              //      el(0) = 290 first time
+              // el = arr[j];
+              // //       arr[0] = 128 first time
+              // arr[j] = arr[i + 1];
+              // // arr[1] = 290 first time
+              // arr[i + 1] = el;
+              [arr[j],arr[i+1]] = [arr[i+1], arr[j]];
+            }
+          }
+        }
+console.log(arr);
+
+
+    </script>
+</body>
+</html>

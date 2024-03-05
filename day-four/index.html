@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS practice day-4 19jan | Array methods, and String Methods</title>
+</head>
+<style>
+    body{
+        background: #000;
+        color: crimson;
+        font-family: monospace;
+        font-size: 1rem;
+    }
+    td{
+        border: 1px dashed yellow;
+        padding: 10px 30px;
+    }
+</style>
+<body>
+    
+    <div class="loop" style="color: aquamarine;">ARRAY METHODS AND OBJECTS</div>
+
+    <script>
+
+        // ----array slice---- .slice(start,end);
+        var arr = ['william', 'john', 'henry', 'sid', 'silvestre'];
+        
+        // it means that we print array elements here from index 1 to index 3;
+        document.write(arr.slice(1,3) + "<br>");
+
+        document.write(arr.slice(-2) + ` <=slice by -2 : &nbsp; & our array is ${arr} <br>`);
+
+        // array splice method
+        // splice( starting index, deleting value(if not so put 0 here. ) )
+        document.write(arr.splice(1,1,'ghareeb')  + ` <=splice(1,1,'ghareeb') : &nbsp; & our array is <b style="color:#0cc ; letter-spacing:1px" > ${arr} </b> <br>`);
+
+        // isArray() method : Array.isArray(arr) = true
+        document.write( Array.isArray(arr) + "<br>");
+        
+// -------------------------indexOf(),----lastIndexOf()----------------------------
+        // indexOf method telling the element is on which index in our array;
+        document.write("indexOf('john') is on index <b>" + arr.indexOf('sid') + "</b> in our aray <br>");
+
+        // indexOf( element , staring point)
+        arr = ['yes', 'no', 'true', 'false', 'yes', 'no']
+        document.write(
+            arr.indexOf("no", 3) + "<br>"
+        );
+        // lastIndexOf( element , staring point), it starts searching from last index of an array
+        arr = ['yes', 'no', 'true', 'false', 'yes', 'no']
+        document.write(
+            arr.lastIndexOf("no") + "<br>"
+        );
+
+        // includes() methods only give true or false and it is Case sensitive also
+        document.write("<span style='color:#0c1'> " + arr.includes('no') + "</span> " + arr.includes('invalid') + "<br>");
+
+// -------------------------some(),----every()----------------------------
+
+        // some( function() ) check if any of the elements in an array pass the test
+        // we make checking func in the some() and if it find one element which match our condition so it return true otherwise false. it didn't go forward after that.
+        arr = [6, 8 , 9, 12 ,15];
+        document.write(
+            "<span style='color:#0c1'> " +
+            arr.some((age)=>{return age>=12})
+            + "</span> <br>"
+            );
+        // every() same as some() but it check all elements if all elements match the condition so it'll return true otherwise false
+        arr = [6, 8 , 9, 12 ,15];
+        document.write(
+            arr.every((age)=>{return age>=12})
+            + "<br>"
+            );
+// -------------------------find(),----findIndex()----------------------------
+        // find() method search if our condition match on element, so it'll return that value, and not check on others, 
+        arr = [6, 8 , 19, 12 ,15];
+        document.write(
+            arr.find((age)=>{return age>=12})
+            + "<br>"
+            );
+        // findIndex() is same as find() but its return index of that element which match our condition
+        arr = [6, 8 , 19, 12 ,15];
+        document.write(
+            arr.findIndex((age)=>{return age>=12})
+            );
+/** 
+ * *----------------------------filter()-------------------*/
+        // filter() method search on every element of an array which match our condition so it will return all of them in new array.
+        bArray = arr.filter((age)=>{
+            return age>=12;
+        });
+        document.write("<br><span style='color:violet '> " + bArray + "</span><br>");
+         
+// --------------------------------***********------------------------
+/** 
+ * *----------------------------object()-------------------*/
+        document.write("-------object--------")
+        a = {
+            name : "Lone Wolf",
+            work : {
+                morning : 'Teacher',
+                evening : 'Developer',
+                night : 'Gym Trainer'
+            }
+        };
+        document.write("<p style = 'color: yellow' >");
+        document.write(a.name + "<br>");
+        document.write(a.work.morning + "<br>");
+        document.write("</p>");
+
+        /**
+         * * second way of define object and declare their properties
+         */
+        b = new Object();
+        b.AgentName = "Alexander";
+        b.AgentBranch = "United Kingdom";
+        /**
+         * * second way of calling object value , b['property'];
+        */
+        document.write("<p style = 'color: rgb(0,200,250) ' >" + b['AgentBranch'] +"</p>");
+
+// -------------------------for in Loop---------------------------
+        for (const key in a) {
+            document.write("<p style = 'color: yellow' >");
+            document.write(key + "<br>");
+            document.write("</p>");
+        }
+        for (const key in b) {
+            document.write("<p style = 'color: orange' >");
+            document.write(key + "<br>");
+            document.write("</p>");
+        }
+
+
+        var agentData = {
+            name : {
+                uk : 'Alex',
+                uae : 'Amad',
+                pk : 'Shah',
+                pk : 'Shah',
+            },
+        };
+        /**
+         * *finding length of an object
+         */
+        var size = Object.keys(agentData.name).length ;
+        document.write(size);
+        /**
+        * todo: print all keys and their values 
+        * */
+        // for(let i = 1; i <= size ; i++){
+        //     document.write("<p style = 'color: rgb(30,250,189)' >"+ Object.keys(agentData.name) + "</p>");
+        // }
+        document.write("<table style = 'border-collapse: collapse ;border: 1px solid #66ff33; margin-inline:auto;' >");
+            document.write("<tr><td colspan = '2' style = ' text-align:center ;border: 1px dashed #66ff33; padding:5px 30px '>Agent Data</td></tr>");
+        for(var key in agentData.name){
+            document.write("<tr>");
+            document.write("<td style = 'border: 1px dashed #66ff33; padding:5px 30px '>");
+            document.write("<p style = 'color: #66ff33'>"+ key);
+            document.write("</td>");
+            document.write("<td style = 'border: 1px dashed #66ff33; padding:5px 30px'>");
+            document.write("<p style = 'color: #ccff33'>" +agentData.name[key]);
+            document.write("</td>");
+            document.write("</tr>");
+        }
+        document.write("</table >");
+
+        /** 
+         * !--------array--MAP()---method----
+         * *map() creates a new array from calling a function for every array element.
+         * *map() does not execute the function for empty elements.
+         * *map() does not change the original array.
+        */
+        var myArr = [1,2,3,4,5];
+        var newArr = myArr.map((el)=>{ return Math.floor(el *2 / 3 * 100) });
+        document.write("<h3 style='color: #ccff33'>" +newArr + "</h3><br><br>");
+        
+
+/**
+ * !------------String Methods-----------------
+*/      
+        document.write("<table style = 'border-collapse: collapse ;border: 1px solid #66ff33; margin-inline:auto;' >");
+        document.write("<tr><td colspan = '3' style = ' text-align:center ;border: 1px dashed #66ff33; padding:5px 30px '> <h2> String Method </h2> </td></tr> <tr>");
+        /**
+         * * .length method
+        */
+        document.write("<td style='color: #ff33ff'>");
+        document.write(".length");
+        document.write("</td>");
+        document.write("<td>");
+
+        var str = "I beat your Legends";
+        document.write(str);
+        document.write("</td>");
+
+        document.write("<td style='color: #ff33ff'>");
+        document.write("<b>"+str.length+"</b>");
+        document.write("</td>");
+
+        /**
+         * * .toLowerCase method
+        */
+        document.write("<tr>");
+        document.write("<td style='color: #ff33ff'>");
+        document.write(".toLowerCase");
+        document.write("</td>");
+        document.write("<td>");
+
+        var str = "I beat your Legends";
+        document.write(str);
+        document.write("</td>");
+
+        document.write("<td style='color: #ff33ff'>");
+        document.write("<b>"+str.toLowerCase()+"</b>");
+        document.write("</td>");
+        document.write("</tr>");
+
+        /**
+         * * .toUpperCase method
+        */
+        document.write("<tr>");
+        document.write("<td style='color: #ff33ff'>");
+        document.write(".toLowerCase");
+        document.write("</td>");
+        document.write("<td>");
+
+        var str = "I beat your Legends";
+        document.write(str);
+        document.write("</td>");
+
+        document.write("<td style='color: #ff33ff'>");
+        document.write("<b>"+str.toUpperCase()+"</b>");
+        document.write("</td>");
+        document.write("</tr>");
+
+        /**
+         * * .includes method
+        */
+        document.write("<tr>");
+        document.write("<td style='color: #ff33ff'>");
+        document.write(".includes('Legends')");
+        document.write("</td>");
+        document.write("<td>");
+
+        var str = "I beat your Legends";
+        document.write(str);
+        document.write("</td>");
+
+        document.write("<td style='color: #ff33ff'>");
+        document.write("<b>"+str.includes("Legends")+"</b>");
+        document.write("</td>");
+        document.write("</tr>");
+
+        /**
+         * * .includes method
+        */
+        document.write("<tr>");
+        document.write("<td style='color: #ff33ff'>");
+        document.write(".includes('Legends')");
+        document.write("</td>");
+        document.write("<td>");
+
+        var str = "I beat your Legends";
+        document.write(str);
+        document.write("</td>");
+
+        document.write("<td style='color: #ff33ff'>");
+        document.write("<b>"+str.includes("Legends")+"</b>");
+        document.write("</td>");
+        document.write("</tr>");
+        /**
+         * * .startsWith() .endsWith() method
+        */
+        document.write("<tr>");
+        document.write("<td style='color: #ff33ff'>");
+        document.write(".startsWith('I') <br> .endsWith('I')");
+        document.write("</td>");
+        document.write("<td>");
+
+        var str = "I beat your Legends";
+        document.write(str);
+        document.write("</td>");
+
+        document.write("<td style='color: #ff33ff'>");
+        document.write("<b>"+str.startsWith('I')+"</b>"+ "<br>" + "<b>"+str.endsWith('I')+"</b>");
+        document.write("</td>");
+        document.write("</tr>");
+        /**
+         * * .search() method
+        */
+        document.write("<tr>");
+        document.write("<td style='color: #ff33ff'>");
+        document.write(".search('your')");
+        document.write("</td>");
+        document.write("<td>");
+
+        var str = "I beat your Legends";
+        document.write(str);
+        document.write("</td>");
+
+        document.write("<td style='color: #ff33ff'>");
+        document.write("<b>"+str.search('your')+"</b>");
+        document.write("</td>");
+        document.write("</tr>");
+        /**
+         * * .match() method
+        */
+        document.write("<tr>");
+        document.write("<td style='color: #ff33ff'>");
+        document.write(".match(/your/g) <br> <span style='color: #33f3f3' > {g: globally} </span>");
+        document.write("</td>");
+        document.write("<td>");
+
+        var str = "I beat your Legends, I beat your Legends";
+        document.write(str);
+        document.write("</td>");
+
+        document.write("<td style='color: #ff33ff'>");
+        document.write("<b>"+str.match(/your/g)+"</b>");
+        document.write("</td>");
+        document.write("</tr>");
+        /**
+         * * .indexOf() .lastIndexOf() method
+        */
+        document.write("<tr>");
+        document.write("<td style='color: #ff33ff'>");
+        document.write(".indexOf('your') <br> .lastIndexOf('your')");
+        document.write("</td>");
+        document.write("<td>");
+
+        var str = "I beat your Legends, I beat your Legends";
+        document.write(str);
+        document.write("</td>");
+
+        document.write("<td style='color: #ff33ff'>");
+        document.write("<b>"+str.indexOf('your')+"</b>"+ "<br>" + "<b>"+str.lastIndexOf('your')+"</b>");
+        document.write("</td>");
+        document.write("</tr>");
+        /**
+         * * .replace() method
+        */
+        document.write("<tr>");
+        document.write("<td style='color: #ff33ff'>");
+        document.write(".replace('beat', 'love')");
+        document.write("</td>");
+        document.write("<td>");
+
+        var str = "I beat your Legends";
+        document.write(str);
+        document.write("</td>");
+
+        document.write("<td style='color: #ff33ff'>");
+        document.write("<b>"+str.replace('beat', 'love')+"</b>");
+        document.write("</td>");
+        document.write("</tr>");
+        /**
+         * * .charAt() method
+        */
+        document.write("<tr>");
+        document.write("<td style='color: #ff33ff'>");
+        document.write(".charAt(3)");
+        document.write("</td>");
+        document.write("<td>");
+
+        var str = "I beat your Legends";
+        document.write(str);
+        document.write("</td>");
+
+        document.write("<td style='color: #ff33ff'>");
+        document.write("<b>"+str.charAt(3)+"</b>");
+        document.write("</td>");
+        document.write("</tr>");
+
+        /**
+         * * .charCodeAt() .fromCharCode() method
+        */
+        document.write("<tr>");
+        document.write("<td style='color: #ff33ff'>");
+        document.write(".charCodeAt(2) <br> String.fromCharCode(98)");
+        document.write("</td>");
+        document.write("<td>");
+
+        var str = "I beat your Legends, I beat your Legends";
+        document.write(str);
+        document.write("</td>");
+        document.write("<td style='color: #ff33ff'>");
+        document.write("<b>"+ str.charCodeAt(2) +"</b>"+ "<br>" + "<b>"+ String.fromCharCode(98) +"</b>");
+        document.write("</td>");
+        document.write("</tr>");
+        /**
+         * * .split() method
+        */
+        document.write("<tr>");
+        document.write("<td style='color: #ff33ff'>");
+        document.write(".split(' ')");
+        document.write("</td>");
+        document.write("<td>");
+
+        var str = "I beat your Legends";
+        document.write(str);
+        document.write("</td>");
+
+        document.write("<td style='color: #ff33ff'>");
+        document.write("<b>"+str.split(" ")+"</b>");
+        document.write("</td>");
+        document.write("</tr>");
+        /**
+         * * .repeat() method
+        */
+        document.write("<tr>");
+        document.write("<td style='color: #ff33ff'>");
+        document.write(".repeat(2)");
+        document.write("</td>");
+        document.write("<td>");
+
+        var str = "I beat your Legends";
+        document.write(str);
+        document.write("</td>");
+
+        document.write("<td style='color: #ff33ff'>");
+        document.write("<b>"+str.repeat(2)+"</b>");
+        document.write("</td>");
+        document.write("</tr>");
+        /**
+         * * .slice() method
+        */
+        document.write("<tr>");
+        document.write("<td style='color: #ff33ff'>");
+        document.write(".slice(startIndex,endIndex) <br> .slice(3)");
+        document.write("</td>");
+        document.write("<td>");
+
+        var str = "I beat your Legends";
+        document.write(str);
+        document.write("</td>");
+
+        document.write("<td style='color: #ff33ff'>");
+        document.write("<b>"+str.slice(3)+"</b>");
+        document.write("</td>");
+        document.write("</tr>");
+        /**
+         * * .substr() .substring() method
+        */
+        document.write("<tr>");
+        document.write("<td style='color: #ff33ff'>");
+        document.write(".substr(2,4) <br> .substring(2,4)");
+        document.write("</td>");
+        document.write("<td>");
+
+        var str = "I beat your Legends, I beat your Legends";
+        document.write(str);
+        document.write("</td>");
+        document.write("<td style='color: #ff33ff'>");
+        document.write("<b>"+ str.substr(2,4) +"</b>"+ "<br>" + "<b>"+ str.substring(2,4) +"</b>");
+        document.write("</td>");
+        document.write("</tr>");
+       
+        doucment.write("</tr></table>");
+
+
+
+        
+
+        
+    </script>
+    
+</body>
+</html>

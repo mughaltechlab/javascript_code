@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advance JS | Rest Operator</title>
+</head>
+<body>
+    
+    <!-- *Rest-Operator (three dots:  ... ) -->
+    
+    <script>
+        addWithoutRestOp(10,20,30);
+        function addWithoutRestOp(){
+            console.log(arguments);
+            let sum = 0;
+            for(i in arguments){
+                sum += arguments[i];
+            }
+            console.log(sum);
+        }
+        // rest operator ... (three dots)
+        sum('LoneWolf', 10,20,30,40,50);
+        function sum(name, ...args){
+            console.log("Hello "+ name);
+            let add = 0;
+            for(let i in args){
+                add += args[i];
+                
+            }
+            console.log(add);
+        }
+    </script>
+</body>
+</html>
