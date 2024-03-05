@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advance js| symbols in ES6</title>
+</head>
+<body>
+    <script>
+        /* 1
+            Symbols do not guarantee true privacy but can be used to separate 
+            public and internal properties of objects. Let's take an example 
+            where we can use Symbol for having private properties.
+            Let's take an example where a property of an object is not private.
+         */
+        var Pet = (function() {
+            // constructor
+            function Pet(type) {
+                this.type = type;
+            }
+            Pet.prototype.getType = function() {
+                return this.type;
+            }
+            return Pet;
+        }());
+
+        var a = new Pet('dog');
+        console.log(a.getType());//Output: dog
+        a.type = null; //Modified outside
+        console.log(a.getType());//Output: null
+
+        /* 2
+        Above, the Pet class property type is not private.
+        To make it private we have to create a closure.
+        The below example illustrates how we can make type private using a closure.
+        */
+
+        //..........IMPOTANT (READ THIS).....
+
+        // var Pet = (function() {
+        //     // This function is immediately invoked when the code is executed.
+        //     // It serves as the outer wrapper of the module.
+            
+        //     // The constructor function for the Pet class.
+        //     function Pet(type) {
+        //         // Inside this constructor, a getType method is defined.
+        //         // The getType method returns the 'type' property, which is passed during object instantiation.
+        //         this.getType = function() {
+        //             return type;
+        //         };
+        //     }
+            
+        //     // The Pet constructor function is returned and assigned to the variable 'Pet'.
+        //     return Pet;
+        // }());
+        var Pet = (function (){
+            function Pet(type){
+                this.getType = function(){
+                    return type;
+                }
+            }
+            return Pet;
+        }());
+        b = new Pet('cat');
+        console.log(b.getType());
+        b.type = null;
+        console.log(b.getType());
+
+        /**
+         * ! Disadvantage of above approach: We are introducing an extra closure for each Pet instance created, which can harm performance.
+         * */
+        /**
+         * ? * S Y M B O L
+        */
+        /**
+         *todo: Now we introduce Symbol. This can help us make a property private without using extra unnecessary closures. Code example below:
+        */
+        // var Pet = (function() {
+        //     // Creating a Symbol to represent a private property called 'type'
+        //     var typeSymbol = Symbol('type');
+            
+        //     // Constructor function for the Pet class
+        //     function Pet(type) {
+        //         // Inside the constructor, the 'type' property is set as a private property using the Symbol
+        //         this[typeSymbol] = type;
+        //     }
+            
+        //     // Adding a method 'getType' to the prototype of the Pet class
+        //     Pet.prototype.getType = function() {
+        //         // This method returns the value of the private property 'type'
+        //         return this[typeSymbol];
+        //     }
+            
+        //     // Returning the constructor function from the IIFE
+        //     return Pet;
+        // }());
+
+        var Pet = (function (){
+            var typeSymbol = Symbol('type');
+            function Pet(type){
+                this[typeSymbol] = type;
+            }
+            Pet.prototype.getType = function(){
+                return this[typeSymbol];
+            }
+            return Pet;
+        }());
+        c = new Pet('wolf');
+        console.log(c.getType());
+        c.type = 'dog';
+        console.log(c.getType());
+
+        /**
+         *?1. var Pet = (function() { ... }());: This line of code defines a variable Pet and immediately invokes an anonymous function using the IIFE pattern. The purpose of the IIFE is to create a closure, encapsulating variables and functions within a local scope.
+         *?2. var typeSymbol = Symbol('type');: Inside the IIFE, a new Symbol is created with the description 'type'. Symbols are unique and immutable values that can be used as property keys. Here, the Symbol typeSymbol is used to represent a private property named 'type'.
+         *?3. function Pet(type) { ... }: The Pet constructor function is defined inside the IIFE. When a new Pet object is created, it takes a type parameter, which is then assigned to the private property typeSymbol.
+         *?4. Pet.prototype.getType = function() { ... }: A method getType is added to the prototype of the Pet class. This method retrieves the value of the private property typeSymbol associated with the instance of Pet.
+         *?4. return Pet;: Finally, the Pet constructor function is returned from the IIFE. This allows the Pet constructor to be assigned to the variable Pet outside of the function scope.
+         *todo: In summary, this code demonstrates the use of Symbols to create private properties in JavaScript, ensuring that certain properties of objects are inaccessible from outside the object. This pattern enhances encapsulation and privacy control, contributing to better code organization and security.
+        */
+
+
+       
+    </script>
+</body>
+</html>
