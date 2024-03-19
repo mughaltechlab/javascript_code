@@ -1,70 +1,13 @@
-
-
-
 const inp = document.getElementById('inp');
 const inpBtn = document.getElementById('inpBtn');
 let taskUl = document.getElementById('myTaskList');
-// const editBtn = document.getElementById('editBtn');
-
-
-// update input
-// let updateInp = document.getElementById('update_inp');
-
-
 editBtn = document.querySelectorAll('.editBtn');
-
-// if(editBtn){
-//     editBtn.addEventListener('click',(e)=>{
-//         console.log('hello');
-    
-//         btnText = editBtn.innerText;
-    
-//         if (btnText == 'Edit') {
-//             // console.log(editBtn.innerText);
-//             inputEl = e.target.parentElement.parentElement.children[0];
-//             inputEl.removeAttribute('readonly');
-//             inputEl.setAttribute('type','text');
-//             inputEl.focus();
-//             editBtn.innerText = 'Save';
-//             // inputEl.setAttribute('autoFocus',)
-//             // console.log(pEl[0].value);
-//         }else{
-//             inputEl = e.target.parentElement.parentElement.children[0];
-//             inputEl.removeAttribute('type','text');
-//             inputEl.setAttribute('readonly','readonly');
-//             // inputEl.focus();
-//             editBtn.innerText = 'Edit';
-//         }
-        
-//     });
-// }
-
-
-// taskUl.addEventListener('click',()=>{
-//     c = taskUl.children ;
-//     console.log(c);
-// });
-
-// taskUl.addEventListener('click',(e)=>{
-//     // e.target.classList.toggle('complete');
-//     c = e.target;
-//     // console.log(c);
-//     // check = e.target.innerText;
-//     // if (String(check)) {
-//     //     console.log(check);
-//     // }
-// });
-
 
 // array for storing task lists
 let listArr = [];
-
-
-
-
-
-
-isUpdate = false;
+let updateId;
+let check = false;
+// isUpdate = false;
 
 function addElement(input_val){
 
@@ -125,8 +68,6 @@ function addElement(input_val){
     const list = document.createElement('li');
     list.id = lastIndex;
 
-    taskInput = document.createElement('input');
-    taskInput.classList.add('taskInput');
     listArr.forEach((e,i) => {
         unique = document.createElement('div');
         unique.textContent = e;
@@ -134,21 +75,16 @@ function addElement(input_val){
         console.log(unique);
         // taskInput.value =  e;
     });
-    taskInput.setAttribute('readOnly','readOnly');
-
-    // list.textContent = listArrLastItem;
     
-    // task = document.createTextNode(listArrLastItem);
     list.appendChild(unique);
     list.appendChild(btnDiv);
-    // list.appendChild(delBtn);
 
     taskUl.appendChild(list);
 
 
 
 
-    // ! add remove functionality----------------------------------------------
+    // ! remove functionality----------------------------------------------
     closeBtnLists = document.querySelectorAll('.deleteBtn');
 
     closeBtnLists.forEach(e => {
@@ -163,108 +99,67 @@ function addElement(input_val){
             // console.log(listArr[uniqueId]);
         });
     });
-    // ! add update functionality----------------------------------------------
+    // ! update functionality----------------------------------------------
     editBtn.addEventListener('click',(e)=>{
 
         // isUpdate = true;
         btnText = e.target.innerText;
 
-        uniqueDiv = e.target.parentElement.parentElement.children[0];
-        // uniqueId = uniqueDiv.getAttribute('id');
+
+        const uniqueDiv = e.target.parentElement.parentElement.children[0];
+        updateId = uniqueDiv.getAttribute('id');
+
+
+        check = listArr.includes(uniqueDiv.innerHTML);
+        
         console.log(uniqueDiv.innerHTML + "  : " + uniqueDiv.getAttribute('id'));
         ind = uniqueDiv.getAttribute('id');
         console.log('array : '+listArr[ind]);
         
         if (btnText == 'Edit') {
-            
             inp.value = uniqueDiv.textContent;
-            // console.log(editBtn.innerText);
-            // inputEl.removeAttribute('readonly');
-            // inputEl.setAttribute('type','text');
-            // inputEl.focus();
-            // e.target.innerText = 'Save';
-            // inputEl.setAttribute('autoFocus',)
-            // console.log(pEl[0].value);
-        }else{
-            inputEl = e.target.parentElement.parentElement.children[0];
-            inputEl.removeAttribute('type','text');
-            inputEl.setAttribute('readonly','readonly');
-            // inputEl.focus();
-            e.target.innerText = 'Edit';
         }
-        
     });
-    
     // !-------------------------------------------------------------------------
-    // document.querySelectorAll('.deleteBtn').map();
-    // document.querySelector('.deleteBtn').style.fontSize = '100px';
-
-    // for(i = 0; i < listsOfLi.length; i++){
-    //     delBtn = document.createElement('button');
-    //     delBtn.textContent = 'x';
-    //     listsOfLi[i].appendChild(delBtn);
-    // }
-
-
-    // delBtn = document.createElement('button');
-    // delBtn.textContent = 'x';
-    // // var delIcon = document.createTextNode('x');
-    // // delBtn.appendChild(delIcon);
-    // document.querySelector('li').appendChild(delBtn);
-
-
-
-
-
-    // listsOfLi.map((el)=>{
-    //     // delete btn
-    //     // document.body.append(list);
-        
-    // })
-
-
-    
-    // console.log(listArr[listArr.length - 1]);
-    // console.log(a);
-    // listArr.map();
-    // listArr.map((el)=>{
-    //     list = document.createElement('li');
-    //     list.textContent = el;
-    //     taskUl.appendChild(list);
-    //     // document.body.append(list);
-        
-    // })
-    // console.log('hello'+ inpVal);
 }
 
 
+//* add btn event listener-----------------------
+
 inpBtn.addEventListener('click',()=>{
-    isUpdate && console.log(inp.value);
-    if (isUpdate) {
-        console.log('update');
-        updateInp =  inp.Value;
-        isUpdate = false;
-    }
-    // else{
-    //     isUpdate ? console.log(updateInp):
-    //     console.log('not');
-    // }
     inpVal = inp.value;
     id=0;
     if (inpVal == '') {
         alert("never enter empty task");
-    }else if(isUpdate){
-        // listArr[id] = inp.value;
-        // console.log('update '+ listArr[id]);
     }
     else{
 
-        // console.log(TaskListLi);
+        
+        if (check) {
+            console.log('exists : ' + inp.value);
+            console.log('id : ' + updateId);
+            listArr[updateId] = inp.value;
 
-        isEdit = listArr.includes(inp.value);
+            // get all list 
+            getLists = document.querySelectorAll('li');
+            // console.log(getLists[updateId].children[0].textContent);
+            getLists[updateId].children[0].textContent = listArr[updateId];
+            inp.value = '';
+            // console.log(updateId);
+            // getLists.forEach((el,i)=>{
+            //     console.log(el);
+            // });
+            // getLists[updateId];
 
-        if (isEdit) {
-            console.log('hello');
+
+            // if () {
+                
+            // } else {
+                
+            // }
+            
+            check = false;
+
         }
         else{
             addElement(inp.value)
@@ -276,39 +171,3 @@ inpBtn.addEventListener('click',()=>{
         
     }
 })
-
-
-
-// editBtn = document.querySelector('.editBtn');
-// if(editBtn){
-//     editBtn.addEventListener('click',(e)=>{
-//         console.log('hello');
-    
-//         btnText = editBtn.innerText;
-    
-//         if (btnText == 'Edit') {
-//             // console.log(editBtn.innerText);
-//             inputEl = e.target.parentElement.parentElement.children[0];
-//             inputEl.removeAttribute('readonly');
-//             inputEl.setAttribute('type','text');
-//             inputEl.focus();
-//             editBtn.innerText = 'Save';
-//             // inputEl.setAttribute('autoFocus',)
-//             // console.log(pEl[0].value);
-//         }else{
-//             inputEl = e.target.parentElement.parentElement.children[0];
-//             inputEl.removeAttribute('type','text');
-//             inputEl.setAttribute('readonly','readonly');
-//             // inputEl.focus();
-//             editBtn.innerText = 'Edit';
-//         }
-        
-//     });
-// }
-
-
-
-
-// nameText = document.createTextNode('sss');
-// nameText = document.createTextNode('ssss') ;
-// name.innerHtml = nameText;
