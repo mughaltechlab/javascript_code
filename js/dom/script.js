@@ -124,7 +124,7 @@ newDiv.id = 'newDiv1';
 // add attribute
 newDiv.setAttribute('title','new div');
 // create textnode
-newDivText = document.createTextNode('developed by 💙');
+const newDivText = document.createTextNode('developed by 💙');
 // add text to newDiv
 newDiv.append(newDivText);
 
@@ -134,7 +134,7 @@ document.getElementById('main').append(newDiv);
 let div2 = document.createElement('div');
 div2.classList.add('div2','text-end');
 let div2Text = document.createTextNode('Set Your Priority 🚀');
-div2.append(div2Text);
+// div2.append(div2Text);
 
 const container = document.querySelector('header .container');
 const headerH1 = document.querySelector('header h1');
@@ -144,10 +144,26 @@ container.insertBefore(div2,headerH1);
 let output = document.getElementById('output');
 let btn = document.getElementById('button');
 
-btn.addEventListener('click',(e)=>{
-    const text = e.target.classList;
-    output.classList.add('anima');
-    output.innerHTML = text;
+
+const header = document.querySelector('header');
+header.style.borderBottom = '5px solid rgba(255,0,0,70%)';
+document.body.addEventListener('mousemove',(e)=>{
+    // console.log(e.offsetX);
+    header.style.borderColor = `rgba(${e.offsetY},${e.offsetX},${e.offsetY},70%)`;
+    // console.log(header.style.borderColor);
+});
+
+
+let inp = document.querySelector('input[type="text"]');
+inp.addEventListener('input',(e)=>{
+
+    output.innerHTML =  e.target.value;
+    console.log(e.target.value);
+
+    
+    
+    // const text = e.target.classList;
+    // output.innerHTML = text;
 
     // console.log(e.clientX);
     // console.log(e.clientY);
@@ -159,6 +175,11 @@ btn.addEventListener('click',(e)=>{
     // console.log(e.ctrlKey && 'ctrlkey');
 
     console.log(e.type);
+});
+
+const select = document.getElementById('select');
+select.addEventListener('change',(e)=>{
+    output.innerHTML = e.target.value;
 });
 
 
