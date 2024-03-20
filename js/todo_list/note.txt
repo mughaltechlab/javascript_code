@@ -1,0 +1,37 @@
+
+
+
+add task    ✅
+        add input in list item 
+
+remove task ✅ 
+edit task   ✅
+
+
+
+-----UPDATE-----------useless
+
+add separate div,inp,btn ✅
+add functionality:
+                    click on edit btn from list 
+                    task value come into the separate update div input
+
+
+----------------------------------------------------------------------
+update fix:  send task value on add input field ✅
+
+
+update array value by index---cccccccc\|
+
+click edit btn:
+    bool =? by checking value is exists in array or not;
+    if(bool){
+        update array value
+    }
+    else{
+        add Element
+    }
+    -----------------✅✅✅✅---------------
+
+    update list div content based on ID ,
+        

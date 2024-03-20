@@ -31,38 +31,9 @@ function addElement(input_val){
     editBtn.textContent = 'Edit';
     editBtn.classList.add('editBtn');
 
-
-    // todo------->>>>>>>>>>>>>>>>
-    // update event
-    // editBtn.addEventListener('click',(e)=>{
-
-    //     btnText = editBtn.innerText;
-
-    //     if (btnText == 'Edit') {
-    //         // console.log(editBtn.innerText);
-    //         inputEl = e.target.parentElement.parentElement.children[0];
-    //         inputEl.removeAttribute('readonly');
-    //         inputEl.setAttribute('type','text');
-    //         inputEl.focus();
-    //         editBtn.innerText = 'Save';
-    //         // inputEl.setAttribute('autoFocus',)
-    //         // console.log(pEl[0].value);
-    //     }else{
-    //         inputEl = e.target.parentElement.parentElement.children[0];
-    //         inputEl.removeAttribute('type','text');
-    //         inputEl.setAttribute('readonly','readonly');
-    //         // inputEl.focus();
-    //         editBtn.innerText = 'Edit';
-    //     }
-        
-    // });
-    // todo----^^^
-
     // append those BUTTONS in btnDiv(.actionDiv);
     btnDiv.appendChild(editBtn);
     btnDiv.appendChild(delBtn);
-
-
     // !-------------------------------------------------------------------
     // list item added in ul
     const list = document.createElement('li');
@@ -71,7 +42,7 @@ function addElement(input_val){
     listArr.forEach((e,i) => {
         unique = document.createElement('div');
         unique.textContent = e;
-        unique.setAttribute('id',i);
+        // unique.setAttribute('id',i);
         console.log(unique);
         // taskInput.value =  e;
     });
@@ -81,22 +52,16 @@ function addElement(input_val){
 
     taskUl.appendChild(list);
 
-
-
-
     // ! remove functionality----------------------------------------------
     closeBtnLists = document.querySelectorAll('.deleteBtn');
 
     closeBtnLists.forEach(e => {
         e.addEventListener('click',()=>{
+            inp.val = '';
             c = e.parentElement.parentElement ;
             c.remove(); 
             uniqueDiv = e.target.parentElement.parentElement.children[0];
             uniqueId = uniqueDiv.getAttribute('id');
-            // delete listArr[uniqueId];
-            // listArr.sllice(uniqueId,1);
-            // c.style.display = 'none';
-            // console.log(listArr[uniqueId]);
         });
     });
     // ! update functionality----------------------------------------------
@@ -107,7 +72,7 @@ function addElement(input_val){
 
 
         const uniqueDiv = e.target.parentElement.parentElement.children[0];
-        updateId = uniqueDiv.getAttribute('id');
+        updateId = e.target.parentElement.parentElement.getAttribute('id');
 
 
         check = listArr.includes(uniqueDiv.innerHTML);
@@ -118,6 +83,8 @@ function addElement(input_val){
         
         if (btnText == 'Edit') {
             inp.value = uniqueDiv.textContent;
+            inp.focus();
+
         }
     });
     // !-------------------------------------------------------------------------
@@ -139,24 +106,11 @@ inpBtn.addEventListener('click',()=>{
             console.log('exists : ' + inp.value);
             console.log('id : ' + updateId);
             listArr[updateId] = inp.value;
-
-            // get all list 
-            getLists = document.querySelectorAll('li');
-            // console.log(getLists[updateId].children[0].textContent);
-            getLists[updateId].children[0].textContent = listArr[updateId];
+            
+            // select li by id
+            document.getElementById(updateId).children[0].innerHTML = listArr[updateId] ;
+            // console.log(a);
             inp.value = '';
-            // console.log(updateId);
-            // getLists.forEach((el,i)=>{
-            //     console.log(el);
-            // });
-            // getLists[updateId];
-
-
-            // if () {
-                
-            // } else {
-                
-            // }
             
             check = false;
 
