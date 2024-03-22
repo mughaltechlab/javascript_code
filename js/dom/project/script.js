@@ -24,63 +24,69 @@ filter.addEventListener('keyup', filterItem);       // filter item
 function addItem(e){
     e.preventDefault();
 
-    // check that newItem value exists in an array or not
-    if (isUpdate==true) {
-        console.log(listArr.includes(newItem.value));
-
-        listArr[updateId] = newItem.value;
-        document.getElementById(updateId).textContent = listArr[updateId];
-        newItem.value = '';
-        isUpdate = false;
+    if (newItem.value == '') {
+        alert("Enter Task Please");
     }
-    else{
-
-        // store input value into an listArr
-        listArr.push(newItem.value);
-        newItem.value = '';
-        // id for list item
-        // let uniqueId = listArr.length - 1;
+    else {
+        // check that newItem value exists in an array or not
+        if (isUpdate==true) {
+            console.log(listArr.includes(newItem.value));
     
-        let li = document.createElement('li');
-        // li.id = uniqueId;
-        // create li elment
-        li.classList.add('list-group-item','d-flex','justify-content-between');
-        // create button element
-        let btnDiv = document.createElement('div');  // div for edit and del btns
-        btnDiv.className = 'btnDiv d-flex gap-2';
+            listArr[updateId] = newItem.value;
+            document.getElementById(updateId).textContent = listArr[updateId];
+            newItem.value = '';
+            isUpdate = false;
+        }
+        else{
     
-        // create edit btn
-        let editBtn = document.createElement('button');       //del btn
-        editBtn.className = 'btn btn-primary btn-sm edit';   // del btn class
-        editBtn.appendChild(document.createTextNode('edit'));    // del btn text
-        // create del btn
-        let deleteBtn = document.createElement('button');       //del btn
-        deleteBtn.className = 'btn btn-danger btn-sm delete';   // del btn class
-        deleteBtn.appendChild(document.createTextNode('X'));    // del btn text
-    
-        // append edit and del btn into btnDiv
-        btnDiv.append(editBtn);
-        btnDiv.append(deleteBtn);
-    
-    
-    
-    
-        let span = document.createElement('span');
-        let newItemText;
-        listArr.forEach((el,i)=>{
-            span.id = i;
-            span.className = 'span'+i;
-            // insert input value into this li
-            newItemText = el;
-        });
-        span.append(newItemText);
-        li.append(span);
-        // append btnDiv to li
-        li.append(btnDiv);
-    
-        // APPEND LI INTO UL LIST
-        itemList.append(li);
+            // store input value into an listArr
+            listArr.push(newItem.value);
+            newItem.value = '';
+            // id for list item
+            // let uniqueId = listArr.length - 1;
+        
+            let li = document.createElement('li');
+            // li.id = uniqueId;
+            // create li elment
+            li.classList.add('list-group-item','d-flex','justify-content-between');
+            // create button element
+            let btnDiv = document.createElement('div');  // div for edit and del btns
+            btnDiv.className = 'btnDiv d-flex gap-2';
+        
+            // create edit btn
+            let editBtn = document.createElement('button');       //del btn
+            editBtn.className = 'btn btn-primary btn-sm edit';   // del btn class
+            editBtn.appendChild(document.createTextNode('edit'));    // del btn text
+            // create del btn
+            let deleteBtn = document.createElement('button');       //del btn
+            deleteBtn.className = 'btn btn-danger btn-sm delete';   // del btn class
+            deleteBtn.appendChild(document.createTextNode('X'));    // del btn text
+        
+            // append edit and del btn into btnDiv
+            btnDiv.append(editBtn);
+            btnDiv.append(deleteBtn);
+        
+        
+        
+        
+            let span = document.createElement('span');
+            let newItemText;
+            listArr.forEach((el,i)=>{
+                span.id = i;
+                span.className = 'span'+i;
+                // insert input value into this li
+                newItemText = el;
+            });
+            span.append(newItemText);
+            li.append(span);
+            // append btnDiv to li
+            li.append(btnDiv);
+        
+            // APPEND LI INTO UL LIST
+            itemList.append(li);
+        }
     }
+
 
 
     // todo edit event------------------------------------
@@ -101,11 +107,6 @@ function addItem(e){
     // todo ----------------------------------------------------
 }
 
-// edit function--------------------
-function editItem(e){
-    console.log(e.target);
-}
-
 // remove function-------------------
 function removeItem(e){
     const isBtn = e.target.classList;
@@ -118,11 +119,7 @@ function removeItem(e){
             console.log(index);
             listArr.splice(index,1);
             li.remove();
-
         }
-        // console.log(2);
-    } else {
-        
     }
 }
 
