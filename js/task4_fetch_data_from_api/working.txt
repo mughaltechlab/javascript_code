@@ -1,0 +1,5 @@
+fetch api data url("https://dummyjson.com/products"); ✅
+create li element   ✅
+append in ul ✅
+
+
