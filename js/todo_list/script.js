@@ -9,6 +9,9 @@ let updateId;
 let check = false;
 // isUpdate = false;
 
+// update localstorage
+function updateStorage(){}
+
 function addElement(input_val){
 
     listArr.push(inpVal);

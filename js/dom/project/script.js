@@ -10,16 +10,25 @@ let listArr = [];
 let updateId;
 let isUpdate = false;   // work as bool
 
-
 // events listener
 form.addEventListener('submit',addItem);            // form submit event || add item into list event
 itemList.addEventListener('click', removeItem);     // item remove event || list delete event
 filter.addEventListener('keyup', filterItem);       // filter item 
 // add event on all li.
 
+if (localStorage.getItem('mytodoV2') != null) {
+    showTodoTasks();
+}
 
 
-// -------FUNCTIONS----------------
+
+// -------FUNCTIONS------------------
+
+// show todo tasks from local storage
+function showTodoTasks(){
+    itemList.innerHTML = localStorage.getItem('mytodoV2');
+}
+
 // add item function
 function addItem(e){
     e.preventDefault();
@@ -36,6 +45,7 @@ function addItem(e){
             document.getElementById(updateId).textContent = listArr[updateId];
             newItem.value = '';
             isUpdate = false;
+            updateStorage();
         }
         else{
     
@@ -84,6 +94,8 @@ function addItem(e){
         
             // APPEND LI INTO UL LIST
             itemList.append(li);
+
+            updateStorage();
         }
     }
 
@@ -119,6 +131,7 @@ function removeItem(e){
             console.log(index);
             listArr.splice(index,1);
             li.remove();
+            updateStorage();
         }
     }
 }
@@ -145,4 +158,9 @@ function filterItem(e){
     });
     
     // console.log(searchText);
+}
+
+// store data into localStorage-------
+function updateStorage(){
+    localStorage.setItem('mytodoV2', itemList.innerHTML);
 }
