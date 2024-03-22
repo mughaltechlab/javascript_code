@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background: linear-gradient(#414040, rgb(46, 46, 65) , #393d58 );
+            background-repeat: no-repeat;
+           min-height: 100vh;
+           padding-top: 50px ;
+        }
+        .slider{
+            width: 80vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            /* margin-top: 50px; */
+            overflow: hidden;
+            position: relative;
+            margin-inline: auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .4);
+
+        }
+        .slider .wrapper{
+            width: 80vw;
+            height: 70vh;
+            overflow: hidden;
+            display: flex;
+            position: relative;
+        }
+        .wrapper img{
+            width: 100%;
+        }
+        .slider .btnDiv{
+            width: 100%;
+            height: 100vh;
+            position: absolute;
+            background: rgba(0, 0, 0, .2);
+            box-shadow: inset 0 0 100px rgba(0,0,0, .2), inset 0 0 100px rgba(0,0,0, 1);
+
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-inline: 50px;
+        }
+        .slider .btnDiv button{
+            all: unset;
+            font-size: 30px;
+            font-weight: 600;
+            color: #f4f4f4;
+            cursor: pointer;
+        }
+        .next{
+            animation: nextAnime .33s ease-in-out;
+            transition: all .33s linear;
+        }
+        @keyframes nextAnime {
+            from{ transform: translateX(100%); }            
+            to{ transform: translateX(0); }            
+        }
+        .prev{
+            animation: prevAnime .22s ease-in-out;
+        }
+        @keyframes prevAnime {
+            from{ transform: translateX(-100%); }            
+            to{ transform: translateX(0); }            
+        }
+    </style>
+</head>
+<body>
+    <div class="slider">
+        <div class="wrapper">
+            <!-- <img src="./img1.png" alt=""> -->
+            <img class="" src="./img2.png" alt="">
+        </div>
+        <div class="btnDiv">
+            <button id="prevBtn"><i class="bi bi-chevron-left"></i></button>
+            <button id="nextBtn"><i class="bi bi-chevron-right"></i></button>
+        </div>
+    </div>
+
+
+    <script src="./script.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+<!-- --------------------------------------------------------- -->
+<!-- 
+    create an imagesArray;
+ -->

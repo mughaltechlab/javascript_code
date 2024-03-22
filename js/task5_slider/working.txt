@@ -1,0 +1,11 @@
+image slider,
+two btns: prev, and next
+continuously rotation ,
+
+tracking next btn index;
+                        j = imgArr.length - 1;
+                        if(i < j && i > 0){
+                            j = i;
+                            ...code
+                            j-=1;
+                        }
