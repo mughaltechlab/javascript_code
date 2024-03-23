@@ -26,6 +26,10 @@ async function fetchData(){
 
     const results = data.results;
 
+    if (page === 1) {
+        searchResult.innerHTML = '';
+    }
+
     results.map((result)=>{
         const image = document.createElement('img');
         image.src = result.urls.small;
