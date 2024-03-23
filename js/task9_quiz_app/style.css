@@ -1,0 +1,63 @@
+:root{
+    --body-bg: #001e4d;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+body{
+    background: var(--body-bg);
+}
+.app{
+    width: 90%;
+    max-width: 600px;
+    background: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    margin: 100px auto 0;
+}
+.app h1{
+    font-size: 25px;
+    color: var(--body-bg);
+    font-weight: 600;
+    border-bottom: 1px solid #222;
+    padding-bottom: 30px;
+}
+.quiz{
+    padding: 20px 0;
+}
+.quiz h2{
+    color: var(--body-bg);
+    font-size: 18px;
+    font-weight: 600;
+}
+.btn{
+    background: #fff;
+    color: #222;
+    border: 1px solid #222;
+    width: 100%;
+    font-weight: 600;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    text-align: left;
+    transition: all .22s ease-in-out;
+}
+.btn:hover{
+    background: #222;
+    color: #fff;
+}
+#nextBtn{
+    display: none;
+    margin: 10px auto;
+    width: 150px;
+    padding: 10px 0;
+    border-radius: 4px;
+    background: var(--body-bg);
+    color: #fff;
+    cursor: pointer;
+    border: 0;
+    outline: 0;
+}
