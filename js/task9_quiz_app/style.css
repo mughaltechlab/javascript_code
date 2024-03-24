@@ -44,8 +44,9 @@ body{
     border-radius: 5px;
     text-align: left;
     transition: all .22s ease-in-out;
+    /* cursor: no-drop; */
 }
-.btn:hover{
+.btn:hover:not([disabled]){
     background: #222;
     color: #fff;
 }
@@ -60,4 +61,12 @@ body{
     cursor: pointer;
     border: 0;
     outline: 0;
+}
+
+.correct{
+    background: #8cf08c;
+    color: var(--body-bg);
+}
+.incorrect{
+    background: #f69685;
 }

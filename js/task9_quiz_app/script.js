@@ -34,6 +34,37 @@ function startQuiz(){
     showQuestion();
 }
 
+
+// function showQuestion(){
+
+//     resetState();
+
+//     let currentQuestion = questions[currentQuestionIndex];
+//     let questionNo = currentQuestionIndex + 1;
+//     questionEl.innerHTML = `${questionNo}. ${currentQuestion.question}`;
+
+//     // set options 
+//     currentQuestion.answers.forEach((ans,i)=>{
+//         // create a button
+//         const btn = document.createElement('button');
+//         btn.className = 'btn';
+//         btn.id = i;
+//         btn.innerHTML = ans.text;
+//         answerBtn.append(btn);
+
+//         if (ans.correct) {
+//             btn.dataset.correct = ans.correct;
+//         }
+        
+//         console.log(btn);
+
+//         btn.addEventListener('click', selectedAns)
+//     });
+// }
+
+
+
+
 function showQuestion(){
 
     resetState();
@@ -46,23 +77,26 @@ function showQuestion(){
         // set options 
         currentQuestion.answers.forEach((ans,i)=>{
             // create a button
-            btn = document.createElement('button');
+            const btn = document.createElement('button');
             btn.className = 'btn';
             btn.id = i;
             btn.innerHTML = ans.text;
-    
-            
             answerBtn.append(btn);
+
+            if (ans.correct) {
+                btn.dataset.correct = ans.correct;
+            }
+            
             console.log(btn);
 
+            btn.addEventListener('click', selectedAns)
         });
-        btn.addEventListener('click',()=>{
-            console.log(ans.correct);
-        })
     }
     else{
-        questionEl.innerHTML = `<h2 style="color:green; display:block; text-align:center;" >Completed</h2>`;
-        answerBtn.innerHTML = `Your score ${score}`;
+        questionEl.innerHTML = `Your Score : <span style = " color: green ">${score}</span> <br/> Total questions : <span style = " color: green ">${questions.length}</span>`;
+        answerBtn.innerHTML = `<h2 style="color:green; display:block; text-align:center;" >Completed</h2>`;
+        nextBtn.innerHTML = 'Play Again';
+        nextBtn.style.display = 'block';
     }
 }
 
@@ -70,22 +104,80 @@ function showQuestion(){
 
 
 function resetState(){
+    questionEl.innerHTML = '';
     nextBtn.style.display = 'none';
-
     while(answerBtn.firstChild){
         answerBtn.removeChild(answerBtn.firstChild);
     }
 }
 
 
+function selectedAns(e){
+    const thisBtn = e.target;
+    const isCorrect = e.target.dataset.correct === "true";
+    if (isCorrect) {
+        console.log('correct');
+        score ++;
+       thisBtn.classList.add('correct');
+    }
+    else{
+        console.log('wrong');
+       thisBtn.classList.add('incorrect');
+    }
+
+    Array.from(answerBtn.children).forEach((btn)=>{
+        btn.style.cursor = 'no-drop';
+        // btn.setAttribute('disabled','true');
+        btn.disabled = true;
+        if (btn.dataset.correct === "true") {
+           btn.classList.add('correct');
+        }
+    });
+    nextBtn.style.display = 'block';
+}
+
 startQuiz();
 
 // render next question and answers
-// nextBtn.innerHTML = 'Start';
-// nextBtn.style.display = 'block';
+
+function handleNextBtn(){
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length) {
+        showQuestion();
+    }
+    else{
+        showScore();
+        
+    }
+}
+
+function showScore(){
+    resetState();
+    questionEl.innerHTML = `Your Score : <span style = " color: green ">${score}</span> <br/> Total questions : <span style = " color: green ">${questions.length}</span>`;
+    console.log(questionEl.innerHTML);
+    nextBtn.innerHTML = 'Play Again';
+    nextBtn.style.display = 'block';
+}
+
+// nextBtn.addEventListener('click',()=>{
+//     if (currentQuestionIndex < questions.length) {
+//         handleNextBtn();
+//     }
+//     else{
+//         startQuiz();
+//     }
+// });
+
+// my nextBtn logic
+
 nextBtn.addEventListener('click',()=>{
-    // answerBtn.innerHTML = '';
-    currentQuestionIndex += 1;
-    showQuestion();
+    if (currentQuestionIndex < questions.length) {
+        currentQuestionIndex += 1;
+        showQuestion();
+    }
+    else {
+        
+        startQuiz();
+    }
 });
 

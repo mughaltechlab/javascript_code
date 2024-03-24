@@ -22,6 +22,8 @@ async function fetchData(){
     const url = `https://api.unsplash.com/search/photos?page=${page}&query=${keyword}&client_id=${apiKey}&per_page=12`;
 
     const resp = await fetch(url);
+    // resp.ok
+    // try catch
     const data = await resp.json();
 
     const results = data.results;
@@ -30,7 +32,7 @@ async function fetchData(){
         searchResult.innerHTML = '';
     }
 
-    results.map((result)=>{
+    results.forEach((result)=>{
         const image = document.createElement('img');
         image.src = result.urls.small;
         const imageLink = document.createElement('a');
