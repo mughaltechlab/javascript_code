@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reference vs Value | js</title>
+</head>
+<body>    
+
+
+    <script>
+        
+        // // passed by value
+        // a = 10;  // so 10 assign to a.
+        // b = a;   // here we assign a to b.
+        // b = a+1    // after modifying b, the value of variable 'a' remain same.
+
+        // // passed by reference
+        // c = [1,2];  // c is an array
+        // d = c;      // assign c to variable d.
+        // // Concept: In arrays or objects, the values are stored by their reference or address.
+        // // So when we assign variable c to variable d, any modifications made to variable d will also affect variable c, as both variables point to the same memory address or reference.
+        // d.push(3);
+
+        // console.log('c = ' + c); // output: [1,2,3]
+        // console.log('d = '+ d); // output: [1,2,3]
+        // console.log('c == d = ' + (c == d)); // check equality output: true;
+        // console.log('c === d = ' + (c === d)); // check equality output: true;
+
+        // e = [2,4];
+        // f = [2,4];
+        // console.log('e = ' + e); // output: [1,2,3]
+        // console.log('e = '+ e); // output: [1,2,3]
+        // console.log('e == f = ' + (e == f)); // check equality output: false
+        // console.log('e === f = ' + (e === f)); // check equality output: false
+
+        // // we push elements into an array by a function
+
+        // let arr1 = [1,2];
+        // let arr2 = arr1
+        // console.log('1. arr1 = ' + arr1);
+        // addEl(arr2,3);
+        // console.log('2. arr2 = ' + arr2);
+        // console.log('1. arr1 = ' + arr1);
+
+
+
+        
+
+        let a = [1,2];
+        let b = a;
+        console.log('a = '+ a);
+        addEl(b,1);
+        console.log('b = '+ b);
+        console.log('a = '+ a);
+
+        function addEl (arr,el){
+            el = el +2;
+            arr.push(el);
+        }
+        
+        
+    </script>
+</body>
+</html>

@@ -9,6 +9,11 @@ setInterval(()=>{
     hrs.innerHTML = checkNum(currenttime.getHours());
     min.innerHTML = checkNum(currenttime.getMinutes());
     sec.innerHTML = checkNum(currenttime.getSeconds());
+    
+    // hrs.innerHTML = (currenttime.getHours() < 10 ? "0" : "") + currenttime.getHours();
+    // min.innerHTML = (currenttime.getMinutes() < 10 ? "0" : "") + currenttime.getMinutes();
+    // sec.innerHTML = (currenttime.getSeconds() < 10 ? "0" : "") + currenttime.getSeconds();
+
 },1000)
 
 function checkNum(num){
