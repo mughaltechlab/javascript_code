@@ -1,0 +1,30 @@
+:root{
+    --bg-gradient: linear-gradient(45deg, #08001f, #30197d);
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+.container{
+    min-height: 100vh;
+    width: 100%;
+    background: var(--bg-gradient);
+    position: relative;
+}
+.form-wrapper{
+    width: 400px;
+    background: #FFF;
+    padding: 80px 20px 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.form-wrapper form{
+    width: 100%;
+}
+.form-wrapper form .input-group{
+    display: none;
+}

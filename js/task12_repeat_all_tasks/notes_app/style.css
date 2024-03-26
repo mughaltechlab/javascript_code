@@ -1,0 +1,124 @@
+:root{
+   --bg-gradient: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(0,0,0,0.15) 100%), radial-gradient(at top center, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.40) 120%) #989898;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+.container{
+    width: 100%;
+    min-height: 100vh;
+    background: var(--bg-gradient);
+    /* background-blend-mode: multiply,multiply; */
+    position: relative;
+    padding-top: 50px;
+}
+.container::before{
+    content: '';
+    width: 200px;
+    height: 200px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: url("./apple.png");
+    background-size: 200px;
+}
+header{
+    max-width: 600px;
+    height: 40px;
+    background: rgba(232, 231, 231, 0.4);
+    margin-inline: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    border-top-right-radius: 12px;
+    border-top-left-radius: 12px;
+    box-shadow: 0 0 10px rgba(255,255,255,0.15), 0 0 10px rgba(0,0,0,0.40);
+    overflow: hidden;
+    padding-inline: 20px
+}
+#createBtn{
+    all: unset;
+    cursor: pointer;
+    position: relative;
+}
+#createBtn::before{
+    content: '+';
+    position: absolute;
+    font-size: 20px;
+    display: flex;
+    left: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.btns{
+    display: flex;
+}
+.btns .ic{
+    width: 15px;
+    height: 15px;
+    /* background: #000; */
+    /* padding: 5px; */
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+
+.red{background: rgb(116, 63, 63);}
+.yellow{background: rgb(171, 171, 91);}
+.green{background: rgb(128, 210, 128);}
+
+.notesApp::-webkit-scrollbar{
+    width: 10px;
+}
+.notesApp::-webkit-scrollbar-track{
+    background: transparent;
+    margin-block: 20px;
+}
+.notesApp::-webkit-scrollbar-thumb{
+    background: rgba(130, 129, 129, 0.4);
+    border-radius: 20px;
+}
+.notesApp{
+    max-width: 600px;
+    padding: 40px;
+    background: rgba(200,200,200, .4);
+    /* display: block; */
+    margin-inline: auto;
+    box-shadow: 0 0 10px rgba(255,255,255,0.15), 0 0 10px rgba(0,0,0,0.40);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    overflow: hidden;
+    overflow-y: scroll;
+    height: 500px;
+    /* display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px; */
+}
+.notesApp p{
+    /* max-width: 90%; */
+    width: 100%;
+    min-height: 140px;
+    margin-inline: auto;
+    border: 0;
+    outline: 0;
+    /* backdrop-filter: blur(60px); */
+    background: rgba(255,255,255,0.05);
+    position: relative;
+    padding: 20px;
+    margin: 10px auto;
+    backdrop-filter: blur(40px);
+
+}
+#deleteBtn{
+    cursor: pointer;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    width: 20px;
+    height: 20px;
+}
