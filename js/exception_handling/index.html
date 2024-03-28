@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exception Handling</title>
+</head>
+<body>
+    
+    <div class="root"></div>
+
+    <script>
+
+        // throw "error";
+        // console.log('aaa');
+
+        // try {
+
+            
+        //     // throw new TypeError("error occured");
+        //     throw new Error("error occured");
+
+        //     console.log('aaa');
+        // } catch (error) {
+        //     console.error(error);
+        //     // console.log(error);
+        // }
+
+        // console.log('hiii');
+
+
+        // TRY CATCH WITH OBJECT
+        // try {
+        //     const user = {
+        //         name: 'Lonewolf',
+        //         agr: 24,
+        //         // profile: {
+        //         //     tag: 'wild',
+        //         // },
+        //     };
+        //     console.log(user.profile.tag);
+
+        //     console.log('222');
+        // } catch (error) {
+        //     console.error(error);
+        //     // console.log(error);
+        // }
+
+        // TRY CATCH SCOPE
+        try{
+            const msg = 'hello';
+
+            throw new Error("Boom!");
+            console.log(msg);
+        }
+        catch (err){
+            console.error(err);
+            console.log(msg);
+        }
+        
+        
+    </script>
+</body>
+</html>
