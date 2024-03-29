@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async Await | JS</title>
+</head>
+<body>
+    
+
+    <script>
+
+        // promises
+
+        const lazyFunc = (ms)=>{
+            const data = new Promise((res,rej)=>{
+                setTimeout(() => {
+                    res({data: "hi", error: null});
+                }, ms);
+            })
+
+            return data;
+        }
+
+
+        /**
+         * todo: WHATS THE ORDER OF LOG 
+        */
+        // console.log("Program start"); // 1
+        
+        // const fetchData = async ()=>{
+        //     console.log("Fetching start data.."); // 2
+        //     const res1 = await lazyFunc(2000);          
+        //     console.log('first lazy', res1);            // 4 : compiler seeing that if its await then it is stop here and go out of this block to run the other code and then come
+        //     const res2 = await lazyFunc(2000);
+        //     console.log('second lazy', res2);           // 5
+        // }
+
+        // fetchData()
+        // // .then(()=>{console.log("Program finished");})
+        // ;
+        
+        // console.log("Program finished"); // 3
+        /**
+         * todo: -----------------------
+        */
+
+
+        /**
+         * todo: We can use Promise.all() but when our promises are independent..
+        */
+        // console.log("Program start"); // 
+        
+        // const fetchData = async ()=>{
+        //     console.log("Fetching start data.."); // 
+        //     const res1 =  lazyFunc(2000);          
+        //     // console.log('first lazy', res1);            // 
+        //     const res2 =  lazyFunc(2000);
+        //     // console.log('second lazy', res2);           // 
+        //     const finalResult = await Promise.all([res1, res2]);
+        //     console.log('final result', finalResult);           // 
+        // }
+
+        // fetchData()
+        // // .then(()=>{console.log("Program finished");})
+        // ;
+        
+        // console.log("Program finished"); // 
+        /**
+         * todo: -----------------------
+        */
+
+
+
+
+        // fetchData()
+        // .then(res=>myData = [res])
+        // .then(data=>console.log(data))
+        // ;
+
+
+
+
+        // async function myName(){
+        //     const  rsp = await jj;
+        //     const data = await rsp.json();
+        // }
+
+
+        /**
+         * ! handle errors/ catch errors
+        */
+        lazyFunc(1000)
+        .then(res=>{console.log(res)})
+        .catch(err=>console.error(err))
+        ;
+
+        // try catch
+        async function cod(){
+            try{
+                const response = await lazyFunc(1000);
+                console.log(response);
+            }
+            catch (err){
+                console.error(err);
+            }
+        }
+        
+            
+    </script>
+</body>
+</html>
